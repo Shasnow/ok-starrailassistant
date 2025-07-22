@@ -88,10 +88,14 @@ config = {
     'onetime_tasks': [  # tasks to execute
         ["src.tasks.StartGameTask", "StartGameTask"],
         ["src.tasks.OrnamentExtractionTask", "OrnamentExtractionTask"],
+        ["src.tasks.CalyxGoldenTask", "CalyxGoldenTask"],
+        ["src.tasks.ReceiveRewardTask", "ReceiveRewardTask"],
+        ["src.tasks.TestTask", "TestTask"],
         ["src.tasks.MyOneTimeTask", "MyOneTimeTask"],
         ["ok", "DiagnosisTask"],
     ],
     'trigger_tasks': [
+        ["src.tasks.AutoPlotTask", "AutoPlotTask"],
         ["src.tasks.MyTriggerTask", "MyTriggerTask"],
     ]
 }
