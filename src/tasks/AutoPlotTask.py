@@ -5,7 +5,7 @@ class AutoPlotTask(TriggerTask):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.name = "自动剧情"
-        self.description = "进入剧情时自动点击对话和选项"
+        self.description = "进入剧情时自动点击对话和选项（未完成）"
         self.plot_count = 0
 
     def run(self):

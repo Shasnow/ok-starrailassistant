@@ -9,9 +9,7 @@ class OrnamentExtractionTask(TradeBlazePowerTask):
 
     def run(self):
         time = self.config.get('次数', 1)
-        self.page_locate()
-        if not self.page_check():
-            self.page_relocate()
+        self.page_locate("饰品提取")
         if not self.level_locate():
             return
 
@@ -35,23 +33,3 @@ class OrnamentExtractionTask(TradeBlazePowerTask):
             self.wait_battle_end(timeout=600)
         self.quit()
         self.log_info("饰品提取任务完成")
-
-    def page_check(self):
-        """
-        检查是否在饰品提取页面
-        :return: bool
-        """
-        return len(self.ocr(0.46,0.32, 0.54, 0.36, match="饰品提取", log=True)) != 0
-
-    def page_relocate(self):
-        """
-        定位到饰品提取页面
-        :return: none
-        """
-        result_box_list=self.ocr(0.14,0.26,0.27,0.82, match="饰品提取", log=True)
-        if len(result_box_list) == 0:
-            self.log_error("未找到饰品提取页面，请手动定位")
-            return False
-        result_box = result_box_list[0]
-        self.click(result_box,down_time=0.5)
-        return True
