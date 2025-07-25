@@ -1,4 +1,4 @@
-name: "ok-boilerplate"
+name: "ok-sra"
 uac: true
 profiles:
   - name: "Release"

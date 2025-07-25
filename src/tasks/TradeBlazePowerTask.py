@@ -47,6 +47,8 @@ class TradeBlazePowerTask(BaseTask):
         if need_scroll:
             self.scroll_relative(0.24, 0.43, -12)
             self.sleep(0.5)
+            self.scroll_relative(0.24, 0.43, -12)
+            self.sleep(0.5)
         result_box_list = self.ocr(0.14, 0.26, 0.27, 0.82, match=page, log=True)
         if len(result_box_list) == 0:
             self.log_error("未找到页面，请手动定位")
@@ -55,7 +57,7 @@ class TradeBlazePowerTask(BaseTask):
         self.click(result_box, down_time=0.5)
         return True
 
-    def level_locate(self):
+    def level_locate(self,x_offset=600, y_offset=0):
         for i in range(30):
             result_list=self.ocr(0.45, 0.28, 0.52, 0.81, match=self.level[self.config.get('关卡') - 1], log=True)
             if len(result_list) == 0:
@@ -63,7 +65,8 @@ class TradeBlazePowerTask(BaseTask):
                 self.sleep(1)
                 continue
             target_box = result_list[0]
-            target_box.x += 600  # 向进入按钮偏移
+            target_box.x += x_offset  # 向进入按钮偏移
+            target_box.y += y_offset
             break
         else:
             self.log_info('未找到指定关卡')

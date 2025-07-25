@@ -76,7 +76,7 @@ config = {
         }
     },
     'screenshots_folder': "screenshots",  #截图存放目录, 每次重新启动会清空目录
-    'gui_title': 'ok-script-boilerplate',  # Optional
+    'gui_title': 'OK-SR',  # Optional
     'template_matching': {
         'coco_feature_json': os.path.join('assets', 'result.json'), #coco格式标记, 需要png图片, 在debug模式运行后, 会对进行切图仅保留被标记部分以减少图片大小
         'default_horizontal_variance': 0.002, #默认x偏移, 查找不传box的时候, 会根据coco坐标, match偏移box内的
@@ -86,12 +86,13 @@ config = {
     'version': version, #版本
     'my_app': ['src.globals', 'Globals'], # 全局单例对象, 可以存放加载的模型, 使用og.my_app调用
     'onetime_tasks': [  # tasks to execute
-        ["src.tasks.StartGameTask", "StartGameTask"],
+        ["src.tasks.AllInOnce", "AllInOnce"],
         ["src.tasks.OrnamentExtractionTask", "OrnamentExtractionTask"],
         ["src.tasks.CalyxGoldenTask", "CalyxGoldenTask"],
         ["src.tasks.CalyxCrimsonTask", "CalyxCrimsonTask"],
         ["src.tasks.StagnantShadowTask", "StagnantShadowTask"],
         ["src.tasks.CaverOfCorrosionTask", "CaverOfCorrosionTask"],
+        ["src.tasks.EchoOfWar", "EchoOfWar"],
         ["src.tasks.ReceiveRewardTask", "ReceiveRewardTask"],
         ["src.tasks.TestTask", "TestTask"],
         ["src.tasks.MyOneTimeTask", "MyOneTimeTask"],
