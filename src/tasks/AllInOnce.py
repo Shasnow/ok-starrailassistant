@@ -13,7 +13,7 @@ class AllInOnce(BaseTask):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.name = "日常一条龙"
-        self.description = "启动游戏、登录、清体力、领奖励（清体力在对应任务项配置，设置关卡或为0则跳过）"
+        self.description = "启动游戏、登录、清体力、领奖励（清体力在对应任务项配置，设置关卡或次数为0则跳过）"
 
     def run(self):
         if not self.wait_login():

@@ -66,12 +66,12 @@ config = {
     },
     'screenshots_folder': "screenshots",  #截图存放目录, 每次重新启动会清空目录
     'gui_title': 'OK-SRA',  # Optional
-    'template_matching': {
-        'coco_feature_json': os.path.join('assets', 'result.json'), #coco格式标记, 需要png图片, 在debug模式运行后, 会对进行切图仅保留被标记部分以减少图片大小
-        'default_horizontal_variance': 0.002, #默认x偏移, 查找不传box的时候, 会根据coco坐标, match偏移box内的
-        'default_vertical_variance': 0.002, #默认y偏移
-        'default_threshold': 0.8, #默认threshold
-    },
+    # 'template_matching': {
+    #     'coco_feature_json': os.path.join('assets', 'result.json'), #coco格式标记, 需要png图片, 在debug模式运行后, 会对进行切图仅保留被标记部分以减少图片大小
+    #     'default_horizontal_variance': 0.002, #默认x偏移, 查找不传box的时候, 会根据coco坐标, match偏移box内的
+    #     'default_vertical_variance': 0.002, #默认y偏移
+    #     'default_threshold': 0.8, #默认threshold
+    # },
     'version': version, #版本
     'my_app': ['src.globals', 'Globals'], # 全局单例对象, 可以存放加载的模型, 使用og.my_app调用
     'onetime_tasks': [  # tasks to execute
