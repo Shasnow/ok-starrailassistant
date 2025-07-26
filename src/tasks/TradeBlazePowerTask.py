@@ -11,8 +11,8 @@ class TradeBlazePowerTask(BaseTask):
         self.name = name
         self.description = description
         self.default_config = {
-            '关卡': 1,
-            '次数': 1,
+            '关卡': 0,
+            '次数': 0,
             '连续作战': 1,
             '使用支援角色': False,
             '补充体力次数': 0,
@@ -39,10 +39,26 @@ class TradeBlazePowerTask(BaseTask):
         定位到页面
         :return: none
         """
-        self.send_key('f4',down_time=0.5)  # F4
-        self.wait_ocr(0.05, 0.06, 0.12, 0.09, match=["每日实训", "生存索引"], log=True, time_out=30)
-        while len(self.ocr(0.05, 0.06, 0.12, 0.09, match="生存索引", log=True)) == 0:
+        if self.config.get('关卡', 0) == 0 or self.config.get('次数', 0) == 0:
+            self.info_set(self.name,"跳过")
+            return False
+
+        for i in range(30):
+            if len(self.ocr(0.05, 0.06, 0.12, 0.09, match=["每日实训", "生存索引"], log=True))!=0:
+                break
+            self.send_key('f4',down_time=0.1)  # F4
+            self.sleep(1)
+        else:
+            self.info_set(self.name,"超时")
+            return False
+        for i in range(30):
+            if len(self.ocr(0.05, 0.06, 0.12, 0.09, match="生存索引", log=True)) != 0:
+                break
             self.click(0.25, 0.20,down_time=0.5)
+        else:
+            self.info_set(self.name,"超时")
+            return False
+
         self.sleep(0.5)
         if need_scroll:
             self.scroll_relative(0.24, 0.43, -12)
@@ -58,6 +74,7 @@ class TradeBlazePowerTask(BaseTask):
         return True
 
     def level_locate(self,x_offset=600, y_offset=0):
+        self.info_set(self.name, "定位关卡")
         for i in range(30):
             result_list=self.ocr(0.45, 0.28, 0.52, 0.81, match=self.level[self.config.get('关卡') - 1], log=True)
             if len(result_list) == 0:
@@ -69,7 +86,7 @@ class TradeBlazePowerTask(BaseTask):
             target_box.y += y_offset
             break
         else:
-            self.log_info('未找到指定关卡')
+            self.info_set(self.name,'未找到指定关卡')
             return False
         for i in range(30):
             if len(self.ocr(0.81, 0.89, 0.92, 0.93, match=re.compile("挑战"), log=True)) != 0:
@@ -85,6 +102,7 @@ class TradeBlazePowerTask(BaseTask):
         等待战斗结束
         :return: none
         """
+        self.info_set(self.name, "等待战斗结束")
         time = 0
         state = Box(name="未知状态", x=0, y=0, width=0, height=0)
         while time < timeout:
@@ -96,9 +114,9 @@ class TradeBlazePowerTask(BaseTask):
             state = result_list[0]
             break
         if state.name == "挑战成功":
-            self.log_info("挑战成功")
+            self.info_set(self.name,"挑战成功")
         elif state.name == "战斗失败":
-            self.log_info("战斗失败", notify=True)
+            self.info_set(self.name,"战斗失败")
         else:
             self.log_error("未知状态: {}".format(state.name))
 
@@ -111,7 +129,7 @@ class TradeBlazePowerTask(BaseTask):
         if self.replenish_check()==1:
             self.click(0.63, 0.88, after_sleep=0.5,down_time=0.5)
         elif self.replenish_check()==-1:
-            self.log_info("退出战斗")
+            self.info_set(self.name,"退出战斗")
             self.quit()
             return
 
@@ -123,7 +141,7 @@ class TradeBlazePowerTask(BaseTask):
                 self.click(0.61, 0.72, after_sleep=0.5,down_time=0.5)
                 return 1
             else:
-                self.log_info("体力不足")
+                self.info_set(self.name,"体力不足")
                 self.send_key('esc',after_sleep=0.5,down_time=0.2)
                 return -1
         return 0
@@ -172,7 +190,7 @@ class TradeBlazePowerTask(BaseTask):
         :return: none
         """
         num=self.config['连续作战']
-        self.log_info(f"设置战斗次数为{num}")
+        self.info_set(self.name,f"设置战斗次数为{num}")
         for i in range(num-1):
             self.click(0.96,0.81, down_time=0.4, after_sleep=0.1)
 
@@ -182,7 +200,7 @@ class TradeBlazePowerTask(BaseTask):
         :return: 流程正常完成返回True，流程中断返回False
         """
         _time=self.config.get('次数', 1)
-        self.log_info('开始战斗')
+        self.info_set(self.name,'开始战斗')
         for i in range(30):
             if len(self.ocr(0.84,0.89, 0.90, 0.92, match="开始挑战", log=True)) != 0:
                 break

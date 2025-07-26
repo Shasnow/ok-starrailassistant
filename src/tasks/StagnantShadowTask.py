@@ -13,9 +13,10 @@ class StagnantShadowTask(TradeBlazePowerTask):
                       '锋芒之形', '炎华之形', '鸣雷之形', re.compile('风'), '空海之形', ]
 
     def run(self):
-        self.page_locate('凝滞虚影', True)
+        if not self.page_locate('凝滞虚影', True):
+            return
         if not self.level_locate():
             return
         self.set_battle_number()
         self.battle()
-        self.log_info('凝滞虚影 任务完成')
+        self.info_set(self.name,'任务完成')

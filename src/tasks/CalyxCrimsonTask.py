@@ -11,10 +11,11 @@ class CalyxCrimsonTask(TradeBlazePowerTask):
                     '大矿区','机械聚落','铆钉镇','边缘通路','城郊雪原','支援舱段','收容舱段']
 
     def run(self):
-        self.page_locate(re.compile("赤"))
+        if not self.page_locate(re.compile("赤")):
+            return
         if not self.level_locate():
             return
         self.set_battle_number()
         self.battle()
-        self.log_info('拟造花萼（赤）任务完成')
+        self.info_set(self.name,'任务完成')
 

@@ -9,9 +9,10 @@ class CaverOfCorrosionTask(TradeBlazePowerTask):
                       '漂泊之径', '迅拳之径', '霜风之径']
 
     def run(self):
-        self.page_locate("侵蚀隧洞", True)
+        if not self.page_locate("侵蚀隧洞", True):
+            return
         if not self.level_locate():
             return
         self.set_battle_number()
         self.battle()
-        self.log_info('侵蚀隧洞 任务完成')
+        self.info_set(self.name,'任务完成')

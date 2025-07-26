@@ -1,8 +1,6 @@
 import os
 
-from ok import ConfigOption
-
-version = "dev"
+version = "v1.0.0"
 
 
 def make_bottom_left_black(frame):
@@ -17,20 +15,12 @@ def make_bottom_left_black(frame):
         print(f"Error processing frame: {e}")
         return frame
 
-
-key_config_option = ConfigOption('Game Hotkey Config', {  #全局配置示例
-    'Echo Key': 'q',
-    'Liberation Key': 'r',
-    'Resonance Key': 'e',
-    'Tool Key': 't',
-}, description='In Game Hotkey for Skills')
-
 config = {
     'debug': False,  # Optional, default: False
     'use_gui': True,
     'config_folder': 'configs',
     'screenshot_processor': make_bottom_left_black,
-    'global_configs': [key_config_option],
+    'global_configs': [],
     'gui_icon': 'icons/icon.png',
     'wait_until_before_delay': 0,
     'wait_until_check_delay': 0,
@@ -68,15 +58,14 @@ config = {
     },
     'links': {
         'default': {
-            'github': 'https://github.com/ok-oldking/ok-script-boilerplate',
-            'discord': 'https://discord.gg/vVyCatEBgA',
-            'sponsor': 'https://www.paypal.com/ncp/payment/JWQBH7JZKNGCQ',
-            'share': 'Download from https://github.com/ok-oldking/ok-script-boilerplate',
-            'faq': 'https://github.com/ok-oldking/ok-script-boilerplate'
+            'github': 'https://github.com/Shasnow/ok-starrailassistant',
+            'sponsor': 'https://starrailassistant.top/sponsor.html',
+            'share': 'Download from https://github.com/Shasnow/ok-starrailassistant',
+            'faq': 'https://github.com/Shasnow/ok-starrailassistant'
         }
     },
     'screenshots_folder': "screenshots",  #截图存放目录, 每次重新启动会清空目录
-    'gui_title': 'OK-SR',  # Optional
+    'gui_title': 'OK-SRA',  # Optional
     'template_matching': {
         'coco_feature_json': os.path.join('assets', 'result.json'), #coco格式标记, 需要png图片, 在debug模式运行后, 会对进行切图仅保留被标记部分以减少图片大小
         'default_horizontal_variance': 0.002, #默认x偏移, 查找不传box的时候, 会根据coco坐标, match偏移box内的
@@ -92,14 +81,11 @@ config = {
         ["src.tasks.CalyxCrimsonTask", "CalyxCrimsonTask"],
         ["src.tasks.StagnantShadowTask", "StagnantShadowTask"],
         ["src.tasks.CaverOfCorrosionTask", "CaverOfCorrosionTask"],
-        ["src.tasks.EchoOfWar", "EchoOfWar"],
+        ["src.tasks.EchoOfWarTask", "EchoOfWarTask"],
         ["src.tasks.ReceiveRewardTask", "ReceiveRewardTask"],
-        ["src.tasks.TestTask", "TestTask"],
-        ["src.tasks.MyOneTimeTask", "MyOneTimeTask"],
         ["ok", "DiagnosisTask"],
     ],
     'trigger_tasks': [
         ["src.tasks.AutoPlotTask", "AutoPlotTask"],
-        ["src.tasks.MyTriggerTask", "MyTriggerTask"],
     ]
 }

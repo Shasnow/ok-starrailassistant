@@ -9,7 +9,8 @@ class OrnamentExtractionTask(TradeBlazePowerTask):
 
     def run(self):
         time = self.config.get('次数', 1)
-        self.page_locate("饰品提取")
+        if not self.page_locate("饰品提取"):
+            return
         if not self.level_locate():
             return
 
@@ -32,4 +33,4 @@ class OrnamentExtractionTask(TradeBlazePowerTask):
         else:
             self.wait_battle_end(timeout=600)
         self.quit()
-        self.log_info("饰品提取任务完成")
+        self.info_set(self.name,'任务完成')

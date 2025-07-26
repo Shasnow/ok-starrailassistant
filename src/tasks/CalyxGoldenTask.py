@@ -13,14 +13,15 @@ class CalyxGoldenTask(TradeBlazePowerTask):
         }
 
     def run(self):
-        self.page_locate(re.compile("金"))
+        if not self.page_locate(re.compile("金")):
+            return
         if not self.level_locate():
             return
         self.set_battle_number()
         self.battle()
-        self.log_info('拟造花萼（金）任务完成')
+        self.info_set(self.name,'任务完成')
 
-    def level_locate(self):
+    def level_locate(self, **kwargs):
         match self.config.get('关卡'):
             case '角色经验材料':
                 target_point = (0.80, 0.38)
