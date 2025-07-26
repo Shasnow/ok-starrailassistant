@@ -5,6 +5,8 @@ on:
     # Sequence of patterns matched against refs/tags
     tags:
       - 'v*'
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -83,4 +85,5 @@ jobs:
             ###  更新日志 ${{ steps.sync.outputs.start_tag }} -> ${{ steps.sync.outputs.end_tag }}:
                           ${{ steps.sync.outputs.changes_with_asterisk }}
           files: pyappify_dist/*
+          token: '${{ github.token }}'
 
