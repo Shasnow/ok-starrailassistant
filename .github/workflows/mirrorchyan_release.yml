@@ -12,6 +12,7 @@ jobs:
           filetype: latest-release
           filename: "ok-sra-win32-Full-setup.exe"
           mirrorchyan_rid: ok-sra
+          extra_zip: true
 
           github_token: ${{ secrets.GITHUB_TOKEN }}
           owner: Shasnow
