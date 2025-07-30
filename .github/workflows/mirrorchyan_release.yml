@@ -1,0 +1,20 @@
+name: mirrorchyan_release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  mirrorchyan:
+    runs-on: macos-latest
+    steps:
+      - uses: MirrorChyan/uploading-action@v1
+        with:
+          filetype: latest-release
+          filename: "ok-sra-win32-Full-setup.exe"
+          mirrorchyan_rid: ok-sra
+          extra_zip: true
+
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: Shasnow
+          repo: ok-starrailassistant
+          upload_token: ${{ secrets.MirrorChyanUploadToken }}

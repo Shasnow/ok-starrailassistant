@@ -5,8 +5,6 @@ on:
     # Sequence of patterns matched against refs/tags
     tags:
       - 'v*'
-permissions:
-  contents: write
 
 jobs:
   build:
@@ -90,3 +88,10 @@ jobs:
           files: pyappify_dist/*
           token: '${{ github.token }}'
 
+      - name: Trigger MirrorChyanUploading
+        shell: bash
+        run: |
+          gh workflow run --repo $GITHUB_REPOSITORY mirrorchyan_release
+          gh workflow run --repo $GITHUB_REPOSITORY mirrorchyan_release_note
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
