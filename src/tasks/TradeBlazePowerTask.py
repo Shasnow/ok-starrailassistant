@@ -151,7 +151,13 @@ class TradeBlazePowerTask(BaseTask):
         退出战斗
         :return: none
         """
-        self.click(0.37, 0.88,down_time=0.5)
+        for i in range(30):
+            box_list = self.ocr(0.34, 0.86, 0.40, 0.89, match="退出关卡", log=True)
+            if len(box_list) == 0:
+                break
+            self.click(box_list[0], down_time=0.3, after_sleep=0.2)
+        else:
+            self.log_error("退出关卡超时")
         self.sleep(1)
 
     def click_no_position(self):

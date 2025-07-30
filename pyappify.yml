@@ -1,7 +1,7 @@
 name: "ok-sra"
 uac: true
 profiles:
-  - name: "Full"
+  - name: "Release"
     git_url: "https://github.com/Shasnow/ok-starrailassistant"
     admin: true
     main_script: "main.py"

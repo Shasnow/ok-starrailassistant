@@ -14,11 +14,13 @@ class OrnamentExtractionTask(TradeBlazePowerTask):
         if not self.level_locate():
             return
 
-        # self.click(0.35,0.77,after_sleep=1)
-        # self.click(0.22,0.12,after_sleep=1)
-        # self.click(0.15, 0.26,after_sleep=1)
-        while len(self.ocr(0.86, 0.90, 0.92, 0.92, match="开始挑战", log=True)) != 0:
-            self.click(0.87, 0.91, down_time=1)
+        if self.config.get('使用支援角色',False):
+            self.click(0.55,0.77, down_time=0.3,after_sleep=0.5)
+            self.click(0.15,0.21, down_time=0.3,after_sleep=0.5)
+        for i in range(30):
+            if len(self.ocr(0.86, 0.90, 0.92, 0.92, match="开始挑战", log=True)) == 0:
+                break
+            self.click(0.87, 0.91, down_time=0.5)
         if self.replenish_check()==-1:
             self.send_key('esc',after_sleep=1)
             self.send_key('esc', after_sleep=0.5)

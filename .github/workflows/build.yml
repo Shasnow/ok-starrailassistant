@@ -82,7 +82,7 @@ jobs:
           draft: false
           body: |
             ### 下载包说明
-              * ok-sra-win32-Full-setup.exe 完整安装包, 更新使用阿里云+腾讯CNB. 
+              * ok-sra-win32-Release-setup.exe 完整安装包, 更新使用阿里云+腾讯CNB. 
               * ok-sra-win32-online-setup.exe 在线安装包, 在线白嫖的服务器不一定稳定, 建议优先使用完整包. 
               * 不要下载ok-sra-win32.zip,和SourceCode.zip, Do Not Download the SourceCode, ok-sra-win32.zip
             ###  更新日志 ${{ steps.sync.outputs.start_tag }} -> ${{ steps.sync.outputs.end_tag }}:
