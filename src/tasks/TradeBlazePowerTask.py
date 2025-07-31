@@ -108,7 +108,7 @@ class TradeBlazePowerTask(BaseTask):
         while time < timeout:
             self.sleep(1)
             time += 1
-            result_list = self.ocr(0.43, 0.20, 0.57, 0.30, match=["挑战成功", "战斗失败"], log=True)
+            result_list = self.ocr(0.43, 0.15, 0.57, 0.30, match=["挑战成功", "战斗失败"], log=True)
             if len(result_list) ==0:
                 continue
             state = result_list[0]
