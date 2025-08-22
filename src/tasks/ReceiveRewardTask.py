@@ -49,7 +49,8 @@ class ReceiveRewardTask(BaseTask):
         else:
             self.log_error('Time out: 未找到派遣按钮')
             return
-
+        result_list= self.ocr(0.17,0.19,0.40,0.25, match='专属材料',log=True)
+        self.click(result_list[0],down_time=0.2, after_sleep=0.2)
         result_list = self.ocr(0.225, 0.825, 0.29, 0.865, match=re.compile('领取'), log=True)
         if len(result_list) == 0:
             self.info_set(self.name, "没有可领取的派遣奖励")

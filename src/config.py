@@ -1,6 +1,6 @@
 import os
 
-version = "v1.0.0"
+version = "v1.1.45"
 
 
 def make_bottom_left_black(frame):
