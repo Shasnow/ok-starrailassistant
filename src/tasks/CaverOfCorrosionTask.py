@@ -4,7 +4,7 @@ from src.tasks.TradeBlazePowerTask import TradeBlazePowerTask
 class CaverOfCorrosionTask(TradeBlazePowerTask):
     def __init__(self, *args, **kwargs):
         super().__init__("侵蚀隧洞", "仪器", *args, **kwargs)
-        self.level = ['雳涌之径', '弦歌之径', '迷识之径', '勇骑之径', '梦潜之径',
+        self.level = ['隐救之径','雳涌之径', '弦歌之径', '迷识之径', '勇骑之径', '梦潜之径',
                       '幽冥之径', '药使之径', '野焰之径', '圣颂之径', '睿治之径',
                       '漂泊之径', '迅拳之径', '霜风之径']
 

@@ -74,6 +74,11 @@ class TradeBlazePowerTask(BaseTask):
         return True
 
     def level_locate(self,x_offset=600, y_offset=0):
+        res=self.ocr(0.50, 0.31, 0.73, 0.38, match=re.compile("暂无"))
+        if len(res) != 0:
+            self.info_set(self.name, '当前暂无可用存档')
+            self.send_key('esc', down_time=0.1)
+            return False
         self.info_set(self.name, "定位关卡")
         for i in range(30):
             result_list=self.ocr(0.45, 0.28, 0.52, 0.81, match=self.level[self.config.get('关卡') - 1], log=True)

@@ -134,14 +134,14 @@ class ReceiveRewardTask(BaseTask):
         if len(box_list) != 0:
             self.click(box_list[0], down_time=0.3, after_sleep=2)
             self.send_key('esc', down_time=0.1)
-
+        self.sleep(1)
         self.send_key('esc', down_time=0.1)
         self.info_set(self.name, '完成：领取无名勋礼')
 
     def esc_page_locate(self):
         self.info_set(self.name, "定位ESC页面")
         for i in range(30):
-            if not self.ocr(0.67, 0.23, 0.72, 0.26, match="开拓等级", log=True):
+            if not self.ocr(0.67, 0.23, 0.72, 0.26, match=re.compile('开拓'), log=True):
                 self.send_key('esc', down_time=0.1)
                 self.sleep(2)
             else:
