@@ -1,6 +1,6 @@
 import os
 
-version = "v1.1.45"
+version = "v1.2"
 
 
 def make_bottom_left_black(frame):
@@ -76,6 +76,7 @@ config = {
     'my_app': ['src.globals', 'Globals'], # 全局单例对象, 可以存放加载的模型, 使用og.my_app调用
     'onetime_tasks': [  # tasks to execute
         ["src.tasks.AllInOnce", "AllInOnce"],
+        ["src.tasks.SimulateUniverseTask", "SimulateUniverseTask"],
         ["src.tasks.OrnamentExtractionTask", "OrnamentExtractionTask"],
         ["src.tasks.CalyxGoldenTask", "CalyxGoldenTask"],
         ["src.tasks.CalyxCrimsonTask", "CalyxCrimsonTask"],
