@@ -6,7 +6,7 @@ from src.tasks.TradeBlazePowerTask import TradeBlazePowerTask
 class StagnantShadowTask(TradeBlazePowerTask):
     def __init__(self, *args, **kwargs):
         super().__init__("凝滞虚影", "角色晋阶材料", *args, **kwargs)
-        self.level = ['烬日之形', '溟簇之形', '凛月之形', '役轮之形', '弦音之形',
+        self.level = [re.compile('塞壬'),'烬日之形', '溟簇之形', '凛月之形', '役轮之形', '弦音之形',
                       '今宵之形', '机狼之形', '职司之形', '嗔怒之形', '焦炙之形',
                       '冰酿之形', '幽府之形', '燔灼之形', '孽兽之形', '偃偶之形',
                       '天人之形', '震厄之形', '冰棱之形', '幻光之形', '霜晶之形',
